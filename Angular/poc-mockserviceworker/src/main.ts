@@ -1,12 +1,14 @@
-import { bootstrapApplication } from '@angular/platform-browser';
 import { enableProdMode } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
-import { environment } from './environmetns/environment';
-import { worker } from './mocks/browser';  // Asegúrate de que la ruta sea correcta
+import { environment } from './environmetns/environment';  // Ajusta la ruta según tu estructura de carpetas
 
-if (!environment.production) {
-  worker.start(); // Inicia el Mock Service Worker en modo desarrollo
+import { worker } from './mocks/browser';  // Asegúrate de ajustar la ruta si es necesario
+
+if (environment.production) {
+  enableProdMode();
 }
 
-bootstrapApplication(AppComponent)
-  .catch(err => console.error(err));
+worker.start().then(() => {
+  bootstrapApplication(AppComponent);
+});

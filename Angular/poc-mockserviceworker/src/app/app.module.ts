@@ -1,16 +1,14 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-// Importa otros módulos si los necesitas
+import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { UsersComponent } from './users/users.component'; // Asegúrate de que esta ruta sea correcta
 
-@NgModule({
-  declarations: [
-    // Aquí no debe estar el AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    // Otros módulos que necesites
-  ],
-  providers: [],
-  bootstrap: []
+@Component({
+  standalone: true,  // Asegúrate de que sea standalone
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  imports: [RouterModule, RouterOutlet, UsersComponent] // Importa UsersComponent aquí
 })
-export class AppModule { }
+export class AppComponent {
+  title = 'poc-mockserviceworker';
+}
